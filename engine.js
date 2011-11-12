@@ -1,3 +1,3 @@
-if (Prototype) {
-	var test = new Element('p').setStyle({ position: 'absolute', margin: '3em auto', padding: '1em', fontSize: '48px', color: 'yellow', background: 'red' }).update('Hello!');
-}
+$(document).ready(function() {
+	$('body').append($(document.createElement('p')).css({ 'position': 'absolute', 'margin': '3em auto', 'padding': '1em', 'font-size': '48px', 'color': 'yellow', 'background': 'red' }).append(document.createTextNode('Hello!')));
+});
