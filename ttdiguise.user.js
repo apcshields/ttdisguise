@@ -8,8 +8,8 @@
 
 (function() {
 	var scripts = [
-	   // 'https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js',
-	    'https://raw.github.com/apcshields/ttdisguise/master/engine.js'
+	   //'https://raw.github.com/apcshields/ttdisguise/master/engine.js'
+	   'http://brothersjunk.com/hack/ttdisguise/engine.js'
 	];
 	
 	for (i in scripts) {
