@@ -69,7 +69,7 @@ var disguises = {
 			bodyfront: 'https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/bodyfront.png',
 			headfront: 'https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headfront.png',
 			headback: 'https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headback.png'
-		}
+		},
 		dj: {
 			wrapper: 'position: absolute; margin-left: -15px; margin-top: -15px; cursor: pointer;',
 			bodyback: 'position: absolute; display: none;',
