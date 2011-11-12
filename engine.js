@@ -1,66 +1,51 @@
 var disguise = {
 	mask: undefined,
 	setup: function(mask) {
+		console.log('setting up');
+		
 		this.mask = mask;
 		
-		this.don($('img[src*="avatars"]').each(this.don)[0].parent());
+		this.don($($('img[src*="avatars"]').each(this.don)[0]).parent());
 		
 		$($('.roomView').children()[1]).delegate('*', 'DOMNodeInserted', disguise.respond);
 	},
 	respond: function(event) {
 		if (event.srcElement.nodeType == 1 && /avatars/.test(event.srcElement.innerHTML)) {
-			disguise.don($(event.srcElement).find('img[src*="avatars"]').each(disguise.don)[0].parent());
+			disguise.don($($(event.srcElement).find('img[src*="avatars"]').each(disguise.don)[0]).parent());
 		}
 	},
-	don: function() {
+	don: function(elem) {
+		console.log('donning disguise...');
+		
 		var src = $(this).attr('src');
 		
 		if (!src) { // Must be the wrapper div.
-			$(this).css(disguise.mask.dj.wrapper);
+			console.log('wrapper...');
+			
+			$(elem).attr('style', disguise.mask.dj.wrapper);
 		} else if (src.substr(-12) == 'bodyback.png') {
-			$(this).attr('src', disguise.mask.imgs.bodyback).css(disguise.mask.dj.bodyback);
-		} else if (src.substr(-12) == 'bodyback.png') {
-			$(this).attr('src', disguise.mask.imgs.bodyback).css(disguise.mask.dj.bodyback);
-		} else if (src.substr(-12) == 'bodyback.png') {
-			$(this).attr('src', disguise.mask.imgs.bodyback).css(disguise.mask.dj.bodyback);
-		} else if (src.substr(-12) == 'bodyback.png') {
-			$(this).attr('src', disguise.mask.imgs.bodyback).css(disguise.mask.dj.bodyback);
+			console.log('bodyback...');
+			
+			$(this).attr('src', disguise.mask.imgs.bodyback).attr('style', disguise.mask.dj.bodyback);
+		} else if (src.substr(-13) == 'bodyfront.png') {
+			console.log('bodyfront...');
+			
+			$(this).attr('src', disguise.mask.imgs.bodyfront).attr('style', disguise.mask.dj.bodyfront);
+		} else if (src.substr(-13) == 'headfront.png') {
+			console.log('headfront...');
+			
+			$(this).attr('src', disguise.mask.imgs.headfront).attr('style', disguise.mask.dj.headfront);
+		} else if (src.substr(-12) == 'headback.png') {
+			console.log('headback...');
+			
+			$(this).attr('src', disguise.mask.imgs.headback).attr('style', disguise.mask.dj.headback);
+		} else {
+			console.log('hmmm... no disguise for that part.');
 		}
+		
+		console.log('that piece donned');
 	}
 };
-
-$(document).ready(function() {
-	setup(disguises.monkey);
-});
-
-/*
-var q4 = function(e) {
-	if (e.srcElement.nodeType == 1 && /avatars/.test(e.srcElement.innerHTML)) {
-		console.log({ srcElement: e.srcElement.innerHTML, imgs: $(e.srcElement).find('img'), target: e.target });
-	}
-};
-*/
-
-/*
-<div style="position: absolute; left: 240px; top: 30px; z-index: 30; ">
-	<div style="position: absolute; margin-left: -15px; margin-top: -15px; cursor: pointer; ">
-		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/bodyback.png" style="position: absolute; display: none; ">
-		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/bodyfront.png" style="position: absolute; left: 22px; top: 58.85px; z-index: 0; ">
-		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headfront.png" style="position: absolute; z-index: 1; -webkit-transform: rotate(0deg); left: 0px; top: 0px; ">
-		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headback.png" style="position: absolute; display: none; -webkit-transform: rotate(0deg); left: 0px; top: 0px; ">
-	</div>
-</div>
-
-<div style="position: absolute; margin-left: -6px; margin-top: -2px; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/legs.png" style="position: absolute; left: 26.650000000000002px; top: 65px; z-index: 0; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/fronttorso.png" style="position: absolute; display: none; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/backtorso.png" style="position: absolute; left: 26.650000000000002px; top: 57.85px; z-index: 1; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/leftarm.png" style="position: absolute; left: 17.55px; top: 58.5px; z-index: 2; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/rightarm.png" style="position: absolute; left: 40.95px; top: 58.5px; z-index: 3; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/headfront.png" style="position: absolute; display: none; ">
-	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/headback.png" style="position: absolute; left: 0px; top: 0px; z-index: 4; ">
-</div>
-*/
 
 var disguises = {
 	monkey: {
@@ -72,10 +57,56 @@ var disguises = {
 		},
 		dj: {
 			wrapper: 'position: absolute; margin-left: -15px; margin-top: -15px; cursor: pointer;',
-			bodyback: 'position: absolute; display: none;',
+			bodyback: 'position: absolute; left: 26px; top: 69.55px; z-index: 0;',
 			bodyfront: 'position: absolute; left: 22px; top: 58.85px; z-index: 0;',
-			headfront: 'position: absolute; z-index: 1; -webkit-transform: rotate(0deg); left: 0px; top: 0px;',
-			headback: 'position: absolute; display: none; -webkit-transform: rotate(0deg); left: 0px; top: 0px;'
+			headfront: 'position: absolute; z-index: 1; left: 0px; top: 0px;',
+			headback: 'position: absolute; left: 0px; top: 0px; z-index: 1;'
 		}
 	}
 };
+
+$(document).ready(function() {
+	disguise.setup(disguises.monkey);
+});
+
+/*
+var q4 = function(e) {
+	if (e.srcElement.nodeType == 1 && /avatars/.test(e.srcElement.innerHTML)) {
+		console.log({ srcElement: e.srcElement.innerHTML, imgs: $(e.srcElement).find('img'), target: e.target });
+	}
+};
+*/
+
+/*
+
+: Monkey DJ
+
+<div style="position: absolute; left: 240px; top: 30px; z-index: 30; ">
+	<div style="position: absolute; margin-left: -15px; margin-top: -15px; cursor: pointer; ">
+		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/bodyback.png" style="position: absolute; display: none; ">
+		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/bodyfront.png" style="position: absolute; left: 22px; top: 58.85px; z-index: 0; ">
+		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headfront.png" style="position: absolute; z-index: 1; -webkit-transform: rotate(0deg); left: 0px; top: 0px; ">
+		<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/55/headback.png" style="position: absolute; display: none; -webkit-transform: rotate(0deg); left: 0px; top: 0px; ">
+	</div>
+</div>
+
+: Monkey Crowd
+
+<div style="position: absolute; margin-left: -15px; margin-top: -15px; cursor: pointer; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/65/bodyback.png" style="position: absolute; left: 26px; top: 69.55px; z-index: 0; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/65/bodyfront.png" style="position: absolute; display: none; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/65/headfront.png" style="position: absolute; display: none; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/36/scaled/65/headback.png" style="position: absolute; left: 0px; top: 0px; z-index: 1; ">
+</div>
+
+
+<div style="position: absolute; margin-left: -6px; margin-top: -2px; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/legs.png" style="position: absolute; left: 26.650000000000002px; top: 65px; z-index: 0; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/fronttorso.png" style="position: absolute; display: none; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/backtorso.png" style="position: absolute; left: 26.650000000000002px; top: 57.85px; z-index: 1; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/leftarm.png" style="position: absolute; left: 17.55px; top: 58.5px; z-index: 2; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/rightarm.png" style="position: absolute; left: 40.95px; top: 58.5px; z-index: 3; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/headfront.png" style="position: absolute; display: none; ">
+	<img src="https://s3.amazonaws.com/static.turntable.fm/roommanager_assets/avatars/10/scaled/65/headback.png" style="position: absolute; left: 0px; top: 0px; z-index: 4; ">
+</div>
+*/
