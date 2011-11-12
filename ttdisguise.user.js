@@ -2,14 +2,14 @@
 // @name                turntable disguise
 // @namespace	        https://github.com/apcshields/ttdisguise
 // @description	        Allows you to apply disguises to turntable members.
-// @version				9
-// @include				http://turntable.fm/*
+// @version				13
+// @include				http://turntable.fm/the_jolly_potamus
 // ==/UserScript==
 
 (function() {
 	var scripts = [
-	   //'https://raw.github.com/apcshields/ttdisguise/master/engine.js'
-	   'http://brothersjunk.com/hack/ttdisguise/engine.js'
+	   'https://raw.github.com/apcshields/ttdisguise/master/engine.js'
+	   //'http://brothersjunk.com/hack/ttdisguise/engine.js'
 	];
 	
 	for (i in scripts) {
