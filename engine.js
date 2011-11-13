@@ -3,6 +3,8 @@ var disguise = {
 	setup: function(mask) {
 		console.log('setting up');
 		
+		console.log($('img[src*="avatars"]').parent());
+		
 		disguise.mask = mask;
 		
 		$('img[src*="avatars"]').parent().each(disguise.don);

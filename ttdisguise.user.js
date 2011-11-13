@@ -2,7 +2,7 @@
 // @name                turntable disguise
 // @namespace	        https://github.com/apcshields/ttdisguise
 // @description	        Allows you to apply disguises to turntable members.
-// @version				13
+// @version				14
 // @include				http://turntable.fm/the_jolly_potamus
 // ==/UserScript==
 
