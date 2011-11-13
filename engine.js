@@ -88,8 +88,8 @@ var disguises = {
 };
 
 $(document).ready(function() {
-	//window.setTimeout(disguise.setup, 1000, disguises.monkey);
-	disguise.setup(disguises.monkey);
+	window.setTimeout(disguise.setup, 1000, disguises.monkey);
+	//disguise.setup(disguises.monkey);
 });
 
 /*
